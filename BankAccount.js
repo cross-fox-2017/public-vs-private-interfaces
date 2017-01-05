@@ -4,10 +4,10 @@ const ACCT_NUMBER = new WeakMap()
 
 class BankAccount {
   constructor(customer_name, type, acct_number) {
-    //ACCT_NUMBER.set(this, acct_number);
+    ACCT_NUMBER.set(this, acct_number);
     this._customer_name = customer_name;
     this._type          = type;
-    this._acct_number   = acct_number;
+    // this._acct_number   = acct_number;
   }
 
   // customer name
@@ -16,7 +16,7 @@ class BankAccount {
   }
 
   getCustomer_name(){
-    return getCustomer_name.customer_name;
+    return this._customer_name;
   }
 
   // type
@@ -25,35 +25,37 @@ class BankAccount {
   }
 
   getType(){
-    return getType.type;
+    return this.type;
   }
 
   // acc number
   setAccount_number(valNumber){
-    this._acct_number = valNumber;
+    ACCT_NUMBER._acct_number = (this, valNumber);
   }
 
   getAccount_number() {
-    return getAcct_number.acct_number;
+    return ACCT_NUMBER.get(this);
   }
 
   to_s() {
-    return `${this._customer_name} : ${this._type}# ${this._acct_number}`;
+    return `${this._customer_name} : ${this._type}# ${ACCT_NUMBER.get(this)}`;
   }
 
   cover_digits() {
-    //
+
+    return ACCT_NUMBER.get(this).replace(/\d{3}-\d{3}/,"***-***")
+    // return ACCT_NUMBER.get(this);
   }
 }
 
 let my_acct = new BankAccount("Hacktivate", "Checking", "333-555-888")
 
 console.log(my_acct)
-console.log(my_acct._acct_number)
+// bug ~~ console.log(my_acct.ACCT_NUMBER)
 // console.log(my_acct._customer_name("contoh"));
 
 // release 0
 console.log(my_acct.to_s()) // "Hacktivate: Checking# 333-555-888"
 
 // release 1
-// my_acct.cover_digits() // "Hacktivate: Checking# ***-***-888"
+console.log(my_acct.cover_digits()) // "Hacktivate: Checking# ***-***-888"
