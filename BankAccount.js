@@ -11,29 +11,29 @@ class BankAccount {
   }
 
   // customer name
-  set setCustomer_name(valName){
+  setCustomer_name(valName){
     this._customer_name = valName;
   }
 
-  get getCustomer_name(){
+  getCustomer_name(){
     return getCustomer_name.customer_name;
   }
 
   // type
-  set setType(valType){
+  setType(valType){
     this._type = valType;
   }
 
-  get getType(){
+  getType(){
     return getType.type;
   }
 
   // acc number
-  set setAccount_number(valNumber){
+  setAccount_number(valNumber){
     this._acct_number = valNumber;
   }
 
-  get getAccount_number() {
+  getAccount_number() {
     return getAcct_number.acct_number;
   }
 
@@ -50,6 +50,7 @@ let my_acct = new BankAccount("Hacktivate", "Checking", "333-555-888")
 
 console.log(my_acct)
 console.log(my_acct._acct_number)
+// console.log(my_acct._customer_name("contoh"));
 
 // release 0
 console.log(my_acct.to_s()) // "Hacktivate: Checking# 333-555-888"
