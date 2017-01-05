@@ -4,9 +4,9 @@ const ACCT_NUMBER = new WeakMap()
 
 class BankAccount {
   constructor(customer_name, type, acct_number) {
-    this.customer_name = customer_name;
-    this.type = type;
-    this._acct_number = acct_number
+    this._customer_name = customer_name;
+    this._type = type;
+    ACCT_NUMBER.set(this, acct_number)
   }
 
   get account_number() {
@@ -14,19 +14,25 @@ class BankAccount {
   }
 
   to_s() {
-    return console.log(`${this.customer_name}: ${this.type}# ${this._acct_number}`)
+    return console.log(`${this._customer_name}: ${this._type}# ${this.getAccNumber}`)
   }
 
   cover_digits() {
-    //
+    var cover = this.getAccNumber.replace(/\d{3}.\d{3}/, "***-***")
+    return console.log(`${this._customer_name}: ${this._type}# ${cover}`)
   }
-
+  set setCustomer_name(val){
+    this._customer_name = val;
+  }
   set setAccNumber(val){
-    this._acct_number = val;
+    ACCT_NUMBER.set(this, val);
+  }
+  set setType(val){
+    this._type = val;
   }
 
   get getAccNumber(){
-    return this._acct_number;
+    return ACCT_NUMBER.get(this);
   }
 }
 
