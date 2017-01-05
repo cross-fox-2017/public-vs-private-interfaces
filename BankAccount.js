@@ -42,17 +42,14 @@ class BankAccount {
   }
 
   cover_digits() {
-
     return ACCT_NUMBER.get(this).replace(/\d{3}-\d{3}/,"***-***")
-    // return ACCT_NUMBER.get(this);
   }
 }
 
 let my_acct = new BankAccount("Hacktivate", "Checking", "333-555-888")
 
 console.log(my_acct)
-// bug ~~ console.log(my_acct.ACCT_NUMBER)
-// console.log(my_acct._customer_name("contoh"));
+console.log(my_acct.getAccount_number());
 
 // release 0
 console.log(my_acct.to_s()) // "Hacktivate: Checking# 333-555-888"
